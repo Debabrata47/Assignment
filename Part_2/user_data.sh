@@ -14,8 +14,7 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
 unzip awscliv2.zip
 sudo ./aws/install
 
-# Run AWS CLI configuration (ensure you have AWS credentials)
-mkdir -p ~/.aws
+
 
 
 # Create a directory for the application and set up a virtual environment
