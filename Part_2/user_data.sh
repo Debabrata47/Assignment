@@ -18,8 +18,8 @@ sudo ./aws/install
 mkdir -p ~/.aws
 cat << 'EOF' > ~/.aws/credentials
 [default]
-aws_access_key_id=AKIA4FE5XZTC5TXNXO53
-aws_secret_access_key=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
+aws_access_key_id=
+aws_secret_access_key=
 EOF
 cat << 'EOF' > ~/.aws/config
 [default]
