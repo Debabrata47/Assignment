@@ -14,18 +14,6 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
 unzip awscliv2.zip
 sudo ./aws/install
 
-# Run AWS CLI configuration
-mkdir -p ~/.aws
-cat << 'EOF' > ~/.aws/credentials
-[default]
-aws_access_key_id=AKIA4FE5XZTC5TXNXO53
-aws_secret_access_key=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
-EOF
-cat << 'EOF' > ~/.aws/config
-[default]
-region=ap-south-1
-output=json
-EOF
 
 #Virtual Env
 python3 -m venv venv
