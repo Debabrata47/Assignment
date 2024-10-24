@@ -7,14 +7,14 @@ app = Flask(__name__)
 
 s3 = boto3.client('s3')
 
-# Replace with your S3 bucket name
+#S3 bucket name
 BUCKET_NAME = 'assignment132'
 
 def list_s3_content(prefix=""):
     try:
         if prefix:
             prefix = prefix.rstrip('/') + '/'  # Ensure the prefix ends with a '/'
-            
+
             # Check if the path exists (only when prefix is not empty)
             try:
                 s3.head_object(Bucket=BUCKET_NAME, Key=prefix)
@@ -51,15 +51,14 @@ def list_s3_content(prefix=""):
         return {"error": str(e)}, 500
 
 
-
 @app.route('/list-bucket-content', defaults={'path': ''}, methods=['GET'])
 @app.route('/list-bucket-content/<path:path>', methods=['GET'])
 def list_bucket_content(path):
     """Endpoint to list directories (folders) in the S3 bucket."""
     content = list_s3_content(path)
     if isinstance(content, tuple):
-        return jsonify(content[0]), content[1]  # Return error if any
-    return jsonify({"content": content})
+        return jsonify(content[0]), content[1]  
+    return jsonify(content)  
 
 # Enforce HTTPS using Flask-Talisman
 Talisman(app, content_security_policy=None)

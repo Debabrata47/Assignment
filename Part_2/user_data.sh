@@ -5,7 +5,7 @@ cd /home/ubuntu/
 mkdir flask-app
 cd flask-app
 
-# Update and install required packages
+#Required packages
 sudo apt update
 sudo apt install -y python3 python3-pip python3-venv git curl unzip
 
@@ -14,14 +14,24 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
 unzip awscliv2.zip
 sudo ./aws/install
 
+# Run AWS CLI configuration
+mkdir -p ~/.aws
+cat << 'EOF' > ~/.aws/credentials
+[default]
+aws_access_key_id=AKIA4FE5XZTC5TXNXO53
+aws_secret_access_key=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
+EOF
+cat << 'EOF' > ~/.aws/config
+[default]
+region=ap-south-1
+output=json
+EOF
 
-
-
-# Create a directory for the application and set up a virtual environment
+#Virtual Env
 python3 -m venv venv
 source venv/bin/activate
 
-# Install Flask, Boto3, and Flask-Talisman inside the virtual environment
+#Install Required Packages
 pip install flask boto3 flask-talisman
 
 # Create the Flask app file
@@ -33,7 +43,7 @@ from flask_talisman import Talisman
 
 app = Flask(__name__)
 s3 = boto3.client('s3')
-BUCKET_NAME = 'assignment135'
+BUCKET_NAME = 'assignment132'
 
 def list_s3_content(prefix=""):
     """Helper function to list directories and files in an S3 bucket or path."""
@@ -93,8 +103,8 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, ssl_context=context)
 EOF
 
-# Generate self-signed SSL certificate
+#self-signed SSL certificate
 openssl req -x509 -newkey rsa:4096 -keyout /home/ubuntu/flask-app/key.pem -out /home/ubuntu/flask-app/cert.pem -days 365 -nodes -subj "/CN=localhost"
 
-# Run the Flask app in the background
+#Run the Flask app
 nohup python3 /home/ubuntu/flask-app/app.py &
