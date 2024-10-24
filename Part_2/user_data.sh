@@ -16,18 +16,7 @@ sudo ./aws/install
 
 # Run AWS CLI configuration (ensure you have AWS credentials)
 mkdir -p ~/.aws
-cat << 'EOF' > ~/.aws/credentials
-[default]
-aws_access_key_id=AKIA4FE5XZTC5TXNXO53
-aws_secret_access_key=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
-EOF
 
-# Create AWS config file
-cat << 'EOF' > ~/.aws/config
-[default]
-region=ap-south-1
-output=json
-EOF
 
 # Create a directory for the application and set up a virtual environment
 python3 -m venv venv
