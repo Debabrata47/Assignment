@@ -22,13 +22,14 @@ resource "aws_iam_policy" "s3_access_policy" {
         Action   = ["s3:ListBucket", "s3:GetObject"],
         Effect   = "Allow",
         Resource = [
-          "arn:aws:s3:::${var.s3_bucket_name}",
-          "arn:aws:s3:::${var.s3_bucket_name}/*"
+          "arn:aws:s3:::*",
+          "arn:aws:s3:::*/*"
         ]
       }
     ]
   })
 }
+
 
 resource "aws_iam_role_policy_attachment" "attach_s3_policy" {
   role       = aws_iam_role.flask_ec2_role.name
